@@ -1,12 +1,18 @@
 class Solution {
     public int missingNumber(int[] nums) {
         // code here
-        int x = 1;
-        Set<Integer> set = new HashSet<>();
+        int n = nums.length;
+        boolean[] visited = new boolean[n];
         for(int ele : nums){
-            set.add(ele);
+            if(ele > 0 && ele <= n){
+                visited[ele - 1] = true;
+            }
         }
-        while(set.contains(x)) x++;
-        return x;
+        for(int i = 0; i < n; i++){
+            if(visited[i] == false){
+                return i+1;
+            }
+        }
+        return n+1;
     }
 }
